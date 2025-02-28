@@ -7,6 +7,9 @@ Codificación, idioma, tabla de contenidos, tipo de documento
 :toc: right
 :toc-title: Tabla de contenidos
 :doctype: book
+:icons: font
+:source-highlighter: highlight.js
+:copycss: true
 :linkattrs:
 
 ////
@@ -42,6 +45,8 @@ COLOCA A CONTINUACION LOS OBJETIVOS
 ====
 Disponible el https://github.com/ualmtorres/SlimMongoDBAPIProductosValoraciones.git[repositorio de GitHub] con el código fuente de la API REST.
 ====
+
+:numbered:
 
 ## Introducción
 
@@ -481,12 +486,14 @@ $app->run();
 ```
 <1> Devuelve el contenido del archivo `index.html` en la ruta raíz. Este archivo se utiliza para mostrar la documentación de la API REST.
 
-image::images/slim-api-redis-api-structure.png[]
-
 [NOTE]
 ====
 El valor de `mongo` en la función `connect` se refiere al nombre del servicio MongoDB definido en el archivo `docker-compose.yml`. Este es el mismo nombre que se utiliza en el archivo `docker-compose.yml`.
 ====
+
+La figura siguiente muestra algunos endpoints de la API organizados en categorías, productos y comentarios:
+
+image::images/slim-api-redis-api-structure.png[]
 
 ### Endpoint de prueba
 
@@ -504,9 +511,9 @@ $app->get($prefix . '/test', function (RequestInterface $request, ResponseInterf
 });
 ```
 
-### Enpoints de categorías
+### Endpoints de categorías
 
-En esta sección, vamos a implementar los endpoints para gestionar categorías en la API REST. Los endpoints incluyen la creación, consulta, actualización y eliminación de categorías.
+En esta sección vamos a implementar los endpoints para gestionar categorías en la API REST. Los endpoints incluyen la creación, consulta, actualización y eliminación de categorías.
 
 En el archivo `public/routes/categories.php`, añade el siguiente código antes de la definición de las rutas de categorías:
 
@@ -525,7 +532,8 @@ use MongoDB\BSON\ObjectId;
 
 Añade el siguiente código para definir un endpoint `POST /api/categories` que permite crear una nueva categoría. Este endpoint recibe los datos de la categoría en formato JSON en el cuerpo de la solicitud y los inserta en la colección de categorías de MongoDB. En el cuerpo de la solicitud se deben proporcionar los siguientes campos: `name`, `description` y `parentId`. El endpoint devuelve un mensaje con el ID de la nueva categoría creada. La operación MongoDB que se usaría para insertar un documento en la colección de categorías sería similar a la siguiente:
 
-```db.categories.insertOne({
+```
+db.categories.insertOne({
     name: "Categoría 1",
     description: "Descripción de la categoría 1",
     parentId: ObjectId("60c72b2f9b1d8b3a4c8b4567")
@@ -566,14 +574,9 @@ $app->post($prefix . '/categories', function (RequestInterface $request, Respons
 
 Añade el siguiente código para definir un endpoint `GET /api/categories/tree` que permite obtener la jerarquía completa de categorías. Este endpoint consulta todas las categorías de la colección de categorías de MongoDB y construye la jerarquía de categorías en forma de árbol. Para ello, usa una función auxiliar recursiva que recorre las categorías y sus subcategorías. El endpoint devuelve la jerarquía de categorías en formato JSON. La operación MongoDB que se usaría para consultar todas las categorías en la colección de categorías sería similar a la siguiente:
 
-```db.categories.find();
 ```
-
-[NOTE]
-====
-Este endpoint `GET /api/categories/tree` se debe colocar antes que el endpoint `GET /api/categories` para que no haya conflictos en la definición de rutas. Estos conflictos pueden ocurrir si las rutas tienen el mismo prefijo y solo difieren en un parámetro opcional. En ese caso, colocaremos primero la ruta más específica y luego la más general, ya que Slim Framework evalúa las rutas en el orden en que se definen y selecciona la primera coincidencia encontrada.
-Así evitaremos lo que se conoce como "route shadowing", que consiste en que una ruta más específica sea ignorada en favor de una ruta más general porque se definió primero.
-====
+db.categories.find();
+```
 
 [source,php]
 ----
@@ -613,11 +616,18 @@ $app->get($prefix . '/categories/tree', function (RequestInterface $request, Res
 });
 ----
 
+.Conflictos en la definición de rutas o _route shadowing_
+****
+Este endpoint `GET /api/categories/tree` se debe colocar antes que el endpoint `GET /api/categories` para que no haya conflictos en la definición de rutas. Estos conflictos pueden ocurrir si las rutas tienen el mismo prefijo y solo difieren en un parámetro opcional. En ese caso, colocaremos primero la ruta más específica y luego la más general, ya que Slim Framework evalúa las rutas en el orden en que se definen y selecciona la primera coincidencia encontrada.
+Así evitaremos lo que se conoce como "route shadowing", que consiste en que una ruta más específica sea ignorada en favor de una ruta más general porque se definió primero.
+****
+
 #### Endpoint para obtener todas las categorías
 
 Añade el siguiente código para definir un endpoint `GET /api/categories` que permite obtener todas las categorías. Este endpoint consulta todas las categorías de la colección de categorías de MongoDB y las devuelve en formato JSON. La operación MongoDB que se usaría para consultar todas las categorías en la colección de categorías sería similar a la siguiente:
 
-```db.categories.find();
+```
+db.categories.find();
 ```
 
 [source,php]
@@ -643,7 +653,8 @@ $app->get($prefix . '/categories', function (RequestInterface $request, Response
 
 Añade el siguiente código para definir un endpoint `GET /api/categories/{id}` que permite obtener una categoría por su ID. Este endpoint recibe el ID de la categoría como parámetro en la URL y busca la categoría correspondiente en la colección de categorías de MongoDB. Si la categoría existe, se devuelve su información en formato JSON. Si la categoría no existe, se devuelve un mensaje de error. La operación MongoDB que se usaría para buscar una categoría en la colección de categorías sería similar a la siguiente:
 
-```db.categories.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
+```
+db.categories.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
 ```
 
 [source,php]
@@ -686,7 +697,8 @@ $app->get($prefix . '/categories/{id}', function (RequestInterface $request, Res
 
 Añade el siguiente código para definir un endpoint `PUT /api/categories/{id}` que permite actualizar una categoría por su ID. Este endpoint recibe el ID de la categoría como parámetro en la URL y los nuevos datos de la categoría en formato JSON en el cuerpo de la solicitud. Los datos de la categoría a actualizar deben incluir los campos `name`, `description` y `parentId`. El endpoint actualiza la categoría correspondiente en la colección de categorías de MongoDB. Si la categoría se actualiza correctamente, se devuelve un mensaje de éxito. Si la categoría no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar una categoría en la colección de categorías sería similar a la siguiente:
 
-```db.categories.updateOne(
+```
+db.categories.updateOne(
     { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
     { $set: { name: "Nueva categoría", description: "Nueva descripción", parentId: ObjectId("60c72b2f9b1d8b3a4c8b4567") } }
 );
@@ -745,7 +757,8 @@ $app->put($prefix . '/categories/{id}', function (RequestInterface $request, Res
 
 Añade el siguiente código para definir un endpoint `DELETE /api/categories/{id}` que permite eliminar una categoría por su ID. Este endpoint recibe el ID de la categoría como parámetro en la URL y elimina la categoría correspondiente de la colección de categorías de MongoDB. Si la categoría se elimina correctamente, se devuelve un mensaje de éxito. Si la categoría no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar una categoría en la colección de categorías sería similar a la siguiente:
 
-```db.categories.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
+```
+db.categories.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
 ```
 
 [source,php]
@@ -802,7 +815,8 @@ use MongoDB\BSON\ObjectId;
 
 Añade el siguiente código para definir un endpoint `POST /api/products` que permite crear un nuevo producto. Este endpoint recibe los datos del producto en formato JSON en el cuerpo de la solicitud y los inserta en la colección de productos de MongoDB. En el cuerpo de la solicitudo se deben proporcionar los siguientes campos: `name`, `description`, `price` y `categoryId`. El endpoint devuelve un mensaje con el ID del nuevo producto creado. La operación MongoDB que se usaría para insertar un documento en la colección de productos sería similar a la siguiente:
 
-```db.products.insertOne({
+```
+db.products.insertOne({
     name: "Producto 1",
     description: "Descripción del producto 1",
     price: 100,
@@ -845,7 +859,8 @@ $app->post($prefix . '/products', function (RequestInterface $request, ResponseI
 
 Añade el siguiente código para definir un endpoint `GET /api/products/{id}` que permite obtener los detalles de un producto por su ID. Este endpoint recibe el ID del producto como parámetro en la URL y busca el producto correspondiente en la colección de productos de MongoDB. Si el producto existe, se devuelve su información en formato JSON. Si el producto no existe, se devuelve un mensaje de error. La operación MongoDB que se usaría para buscar un documento en la colección de productos sería similar a la siguiente:
 
-```db.products.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
+```
+db.products.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
 ```
 
 [source,php]
@@ -887,6 +902,11 @@ $app->get($prefix . '/products/{id}', function (RequestInterface $request, Respo
 #### Endpoint para consultar productos
 
 Añade el siguiente código para definir un endpoint `GET /api/products` que permite consultar productos. Este endpoint admite parámetros de consulta opcionales para filtrar los productos por categoría (`categoryId`) o por nombre (`name`). Si se proporciona el parámetro `categoryId`, se filtran los productos por la categoría especificada. Si se proporciona el parámetro `name`, se filtran los productos por el nombre que coincida con la cadena especificada. Se pueden combinar ambos parámetros para realizar búsquedas más específicas. Esta operación devuelve una lista de productos en formato JSON. La operación MongoDB que se usaría para consultar productos en la colección de productos sería similar a la siguiente:
+
+```
+db.products.find({ categoryId: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
+```
+
 
 [source,php]
 ----
@@ -931,7 +951,8 @@ $app->get($prefix . '/products', function (RequestInterface $request, ResponseIn
 
 Añade el siguiente código para definir un endpoint `PUT /api/products/{id}` que permite actualizar un producto por su ID. Este endpoint recibe el ID del producto como parámetro en la URL y los nuevos datos del producto en formato JSON en el cuerpo de la solicitud. Los datos del producto a actualizar deben incluir los campos `name`, `description`, `price` y `categoryId`. El endpoint actualiza el producto correspondiente en la colección de productos de MongoDB. Si el producto se actualiza correctamente, se devuelve un mensaje de éxito. Si el producto no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar un documento en la colección de productos sería similar a la siguiente:
 
-```db.products.updateOne(
+```
+db.products.updateOne(
     { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
     { $set: {
         name: "Producto 2",
@@ -996,7 +1017,8 @@ $app->put($prefix . '/products/{id}', function (RequestInterface $request, Respo
 
 Añade el siguiente código para definir un endpoint `DELETE /api/products/{id}` que permite eliminar un producto por su ID. Este endpoint recibe el ID del producto como parámetro en la URL y elimina el producto correspondiente de la colección de productos de MongoDB. También elimina los comentarios asociados al producto. Si el producto se elimina correctamente, se devuelve un mensaje de éxito. Si el producto no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar un documento en la colección de productos sería similar a la siguiente:
 
-```db.products.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
+```
+db.products.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
 ```
 
 [source,php]
@@ -1054,7 +1076,8 @@ use MongoDB\BSON\ObjectId;
 
 Añade el siguiente código para definir un endpoint `POST /api/reviews` que permite añadir un comentario a un producto. Este endpoint recibe los datos del comentario en formato JSON en el cuerpo de la solicitud y los inserta en la colección de comentarios de MongoDB. En el cuerpo de la solicitud se deben proporcionar los siguientes campos: `productId`, `userId`, `username`, `rating` y `comment`. El endpoint devuelve un mensaje con el ID del nuevo comentario creado. La operación MongoDB que se usaría para insertar un documento en la colección de comentarios sería similar a la siguiente:
 
-```db.reviews.insertOne({
+```
+db.reviews.insertOne({
     productId: ObjectId("60c72b2f9b1d8b3a4c8b4567"),
     userId: ObjectId("60c72b2f9b1d8b3a4c8b4568"),
     username: "usuario123",
@@ -1110,7 +1133,8 @@ $app->post($prefix . '/reviews', function (RequestInterface $request, ResponseIn
 
 Añade el siguiente código para definir un endpoint `GET /api/reviews` que permite obtener los comentarios de un producto o por usuario. Este endpoint admite parámetros de consulta opcionales para filtrar los comentarios por producto (`productId`) o por usuario (`userId`). Si se proporciona el parámetro `productId`, se filtran los comentarios por el producto especificado. Si se proporciona el parámetro `userId`, se filtran los comentarios por el usuario especificado. Se pueden combinar ambos parámetros para realizar búsquedas más específicas. Esta operación devuelve una lista de comentarios en formato JSON. La operación MongoDB que se usaría para consultar comentarios en la colección de comentarios sería similar a la siguiente:
 
-```db.reviews.find({ productId: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
+```
+db.reviews.find({ productId: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
 ```
 
 [source,php]
@@ -1170,9 +1194,10 @@ $app->get($prefix . '/reviews', function (RequestInterface $request, ResponseInt
 
 #### Endpoint para actualizar un comentario
 
-Añade el siguiente código para definir un endpoint `PUT /api/reviews/{id}` que permite actualizar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y los nuevos datos del comentario en formato JSON en el cuerpo de la solicitud. Los datos del comentario a actualizar deben incluir los campos `userId`, `rating` y `comment`. El endpoint actualiza el comentario correspondiente en la colección de comentarios de MongoDB. Como medida de seguridad, se verifica que el usuario que intenta actualizar el comentario sea el mismo que lo creó. Si el comentario se actualiza correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar un documento en la colección de comentarios sería similar a la siguiente:
+Añade el siguiente código para definir un endpoint `PUT /api/reviews/{id}` que permite actualizar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y los nuevos datos del comentario en formato JSON en el cuerpo de la solicitud. Los datos del comentario a actualizar deben incluir los campos `userId`, `rating` y `comment`. El endpoint actualiza el comentario correspondiente en la colección de comentarios de MongoDB. Como medida de seguridad se verifica que el usuario que intenta actualizar el comentario sea el mismo que lo creó. Si el comentario se actualiza correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar un documento en la colección de comentarios sería similar a la siguiente:
 
-```db.reviews.updateOne(
+```
+db.reviews.updateOne(
     { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
     { $set: {
         userId: ObjectId("60c72b2f9b1d8b3a4c8b4568"),
@@ -1185,7 +1210,6 @@ Añade el siguiente código para definir un endpoint `PUT /api/reviews/{id}` que
 
 [source,php]
 ----
-// Endpoint para actualizar un comentario
 $app->put($prefix . '/reviews/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($reviews) {
     $id = $args['id'];
     $data = $request->getParsedBody();
@@ -1200,6 +1224,16 @@ $app->put($prefix . '/reviews/{id}', function (RequestInterface $request, Respon
         ]);
     }
 
+    // Validar que el ID del usuario sea un ObjectId
+    try {
+        new ObjectId($data['userId']);
+    } catch (Exception $e) {
+        return createJsonResponse($response->withStatus(400), [
+            'status' => 400,
+            'message' => 'Invalid user ID'
+        ]);
+    }
+
     // Validar los datos de entrada
     if (!isset($data['userId'], $data['rating'], $data['comment'])) {
         return createJsonResponse($response->withStatus(400), [
@@ -1209,7 +1243,7 @@ $app->put($prefix . '/reviews/{id}', function (RequestInterface $request, Respon
     }
 
     // Verificar que el comentario pertenece al usuario
-    $comment = $reviews->findOne(['_id' => new ObjectId($id), 'userId' => $data['userId']]);
+    $comment = $reviews->findOne(['_id' => new ObjectId($id), 'userId' => new ObjectId($data['userId'])]);
     if (!$comment) {
         return createJsonResponse($response->withStatus(403), [
             'status' => 403,
@@ -1243,9 +1277,10 @@ $app->put($prefix . '/reviews/{id}', function (RequestInterface $request, Respon
 
 #### Endpoint para eliminar un comentario
 
-Añade el siguiente código para definir un endpoint `DELETE /api/reviews/{id}` que permite eliminar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y elimina el comentario correspondiente de la colección de comentarios de MongoDB. Como medida de seguridad, se verifica que el usuario que intenta eliminar el comentario sea el mismo que lo creó. Si el comentario se elimina correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar un documento en la colección de comentarios sería similar a la siguiente:
+Añade el siguiente código para definir un endpoint `DELETE /api/reviews/{id}` que permite eliminar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y elimina el comentario correspondiente de la colección de comentarios de MongoDB. Como medida de seguridad se verifica que el usuario que intenta eliminar el comentario sea el mismo que lo creó. Si el comentario se elimina correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar un documento en la colección de comentarios sería similar a la siguiente:
 
-```db.reviews.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
+```
+db.reviews.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });
 ```
 
 [source,php]
@@ -1309,72 +1344,175 @@ $app->delete($prefix . '/reviews/{id}', function (RequestInterface $request, Res
 });
 ----
 
-### Pruebas de la API
+## Indices para mejorar el rendimiento
+
+Los índices son cruciales para mejorar el rendimiento de las consultas en una base de datos. Sin índices, MongoDB debe realizar un escaneo completo de la colección para encontrar los documentos que coinciden con la consulta, lo que puede ser muy ineficiente y lento, especialmente en colecciones grandes. Los índices permiten a MongoDB buscar de manera más eficiente, reduciendo el tiempo de respuesta de las consultas y mejorando el rendimiento general de la aplicación.
+
+En el contexto de esta API, los índices pueden ayudar a acelerar las consultas que filtran productos por categoría, buscan productos por nombre, o filtran comentarios por producto o usuario. Al definir índices en los campos más consultados, se puede reducir significativamente el tiempo de respuesta de estos endpoints, proporcionando una mejor experiencia de usuario.
+
+En MongoDB se pueden definir varios tipos de índices, cada uno con un propósito específico:
+
+* **Indice único**: Garantiza que los valores de un campo sean únicos en toda la colección.
+* **Indice compuesto**: Un índice en múltiples campos de un documento.
+* **Indice de texto**: Permite realizar búsquedas de texto completo en los campos indexados.
+* **Indice geoespacial**: Permite realizar consultas geoespaciales en los datos.
+* **Indice parcial**: Indexa solo los documentos que cumplen con una condición especificada.
+* **Indice TTL (Time To Live)**: Elimina automáticamente los documentos después de un período de tiempo especificado.
+
+### Definir índices en MongoDB
+
+Para definir índices en MongoDB, se utiliza el método `createIndex` en la colección correspondiente. A continuación se muestran algunos ejemplos de cómo definir diferentes tipos de índices:
+
+* **Indice en un solo campo**:
++
+[source, bash]
+----
+db.products.createIndex({ categoryId: 1 })
+----
+* **Indice compuesto**:
++
+[source, bash]
+----
+db.products.createIndex({ categoryId: 1, name: 1 })
+----
++
+[NOTE]
+====
+En un índice compuesto, el orden de los campos es importante. En el ejemplo anterior, el índice se crea en los campos `categoryId` y `name`, en ese orden. Esto significa que el índice se ordenará primero por `categoryId` y luego por `name`. Esto es útil para consultas que filtran por `categoryId` y ordenan por `name`. Sin embargo, si las consultas se realizaran en el orden contrario (filtrar por `name` y ordenar por `categoryId`), el índice no sería tan eficiente. Por tanto, los índices compuestos deben diseñarse cuidadosamente en función de las consultas que se realizarán.
+====
+
+* **Indice de texto**:
++
+[source, bash]
+----
+db.products.createIndex({ name: "text" })
+----
+
+* **Indice único**:
++
+[source, bash]
+----
+db.users.createIndex({ email: 1 }, { unique: true })
+----
+
+* **Indice parcial**:
++
+[source, bash]
+----
+db.orders.createIndex({ status: 1 }, { partialFilterExpression: { status: { $eq: "pending" } } })
+----
+
+* **Indice TTL**:
++
+[source, bash]
+----
+db.sessions.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 })
+----
+
+### Índices recomendados para la API
+
+Definir los índices adecuados en MongoDB es una práctica esencial para optimizar el rendimiento de las consultas y garantizar que la API funcione de manera eficiente, incluso con grandes volúmenes de datos. Para mejorar el rendimiento de los endpoints, es recomendable definir los siguientes índices en MongoDB:
+
+* **Indices para la colección de productos**
+    ** Indice en el campo `categoryId` para filtrar productos por categoría:
++
+[source, bash]
+----
+db.products.createIndex({ categoryId: 1 })
+----
+    ** Indice en el campo `name` para buscar productos por nombre:
++
+[source, bash]
+----
+db.products.createIndex({ name: "text" })
+----
+
+* **Indices para la colección de categorías**
+    ** Indice en el campo `parentId` para construir la jerarquía de categorías:
++
+[source, bash]
+----
+db.categories.createIndex({ parentId: 1 })
+----
+
+* **Indices para la colección de comentarios**
+    ** Indice en el campo `productId` para filtrar comentarios por producto:
++
+[source, bash]
+----
+db.reviews.createIndex({ productId: 1 })
+----
+    ** Indice en el campo `userId` para filtrar comentarios por usuario:
++
+[source, bash]
+----
+db.reviews.createIndex({ userId: 1 })
+----
+
+## Pruebas de la API
 
 Una vez que hemos desarrollado la API REST con Slim Framework, podemos probar los endpoints utilizando Postman. A continuación se muestran algunos ejemplos de peticiones a la API REST:
 
 * Crear una nueva categoría:
     - Método: `POST`
-    - URL: `http://localhost/api/categories`
+    - URL: `http://localhost:8080/api/categories`
     - Cuerpo: `{"name": "Electrónica", "description": "Categoría de productos electrónicos", "parentId": null}`
-    - Respuesta esperada: `{"status": 201, "message": "Category created", "categoryId": "60c72b2f9b1d8b3a4c8b4567"}`
+    - Respuesta esperada: `{"status": 201, "message": "Category created", "categoryId": "67c200a4953f04997706efbc"}`
 +
 image::images/postman-create-category.png[]
 * Obtener todas las categorías:
     - Método: `GET`
-    - URL: `http://localhost/api/categories`
+    - URL: `http://localhost:8080/api/categories`
     - Respuesta esperada: Lista de categorías en formato JSON
 +
 image::images/postman-get-categories.png[]
 * Crear un nuevo producto:
     - Método: `POST`
-    - URL: `http://localhost/api/products`
-    - Cuerpo: `{"name": "Smartphone", "description": "Teléfono inteligente", "price": 500, "categoryId": "60c72b2f9b1d8b3a4c8b4567"}`
-    - Respuesta esperada: `{"status": 201, "message": "Product created", "productId": "60c72b2f9b1d8b3a4c8b4568"}`
-+
-image::images/postman-create-product.png[]
+    - URL: `http://localhost:8080/api/products`
+    - Cuerpo: `{"name": "Smartphone", "description": "Teléfono inteligente", "price": 500, "categoryId": "67c200a4953f04997706efbc"}`
+    - Respuesta esperada: `{"status": 201, "message": "Product created", "productId": "67c2015e953f04997706efbd"}`
 * Obtener todos los productos de una categoría:
     - Método: `GET`
-    - URL: `http://localhost/api/products?categoryId=60c72b2f9b1d8b3a4c8b4567`
+    - URL: `http://localhost:8080/api/products?categoryId=67c200a4953f04997706efbc`
     - Respuesta esperada: Lista de productos en formato JSON
 +
 image::images/postman-get-products.png[]
 * Añadir un comentario a un producto:
     - Método: `POST`
-    - URL: `http://localhost/api/reviews`
-    - Cuerpo: `{"productId": "60c72b2f9b1d8b3a4c8b4568", "userId": "60c72b2f9b1d8b3a4c8b4569", "username": "usuario123", "rating": 4.5, "comment": "Muy buen producto, la batería dura bastante."}`
-    - Respuesta esperada: `{"status": 201, "message": "Comment added", "commentId": "60c72b2f9b1d8b3a4c8b4569"}`
+    - URL: `http://localhost:8080/api/reviews`
+    - Cuerpo: `{"productId": "67c2015e953f04997706efbd", "userId": "60c72b2f9b1d8b3a4c8b4569", "username": "usuario123", "rating": 4.5, "comment": "Muy buen producto, la batería dura bastante."}`
+    - Respuesta esperada: `{"status": 201, "message": "Comment added", "commentId": "67c2023d953f04997706efbe"}`
 +
 image::images/postman-add-review.png[]
 * Obtener los comentarios de un producto:
     - Método: `GET`
-    - URL: `http://localhost/api/reviews?productId=60c72b2f9b1d8b3a4c8b4568`
+    - URL: `http://localhost:8080/api/reviews?productId=60c72b2f9b1d8b3a4c8b4568`
     - Respuesta esperada: Lista de comentarios en formato JSON
 +
 image::images/postman-get-reviews.png[]
 * Actualizar un comentario:
     - Método: `PUT`
-    - URL: `http://localhost/api/reviews/60c72b2f9b1d8b3a4c8b4569`
+    - URL: `http://localhost:8080/api/reviews/67c2023d953f04997706efbe`
     - Cuerpo: `{"userId": "60c72b2f9b1d8b3a4c8b4569", "rating": 4.0, "comment": "Muy buen producto, la batería dura bastante."}`
     - Respuesta esperada: `{"status": 200, "message": "Comment updated"}`
 +
 image::images/postman-update-review.png[]
 * Eliminar un comentario:
     - Método: `DELETE`
-    - URL: `http://localhost/api/reviews/60c72b2f9b1d8b3a4c8b4569`
+    - URL: `http://localhost:8080/api/reviews/67c2023d953f04997706efbe`
     - Cuerpo: `{"userId": "60c72b2f9b1d8b3a4c8b4569"}`
     - Respuesta esperada: `{"status": 200, "message": "Comment deleted"}`
 +
 image::images/postman-delete-review.png[]
 * Eliminar un producto:
     - Método: `DELETE`
-    - URL: `http://localhost/api/products/60c72b2f9b1d8b3a4c8b4568`
+    - URL: `http://localhost:8080/api/products/67c2015e953f04997706efbd`
     - Respuesta esperada: `{"status": 200, "message": "Product and associated reviews deleted"}`
 +
 image::images/postman-delete-product.png[]
 * Eliminar una categoría:
     - Método: `DELETE`
-    - URL: `http://localhost/api/categories/60c72b2f9b1d8b3a4c8b4567`
+    - URL: `http://localhost:8080/api/categories/67c200a4953f04997706efbc`
     - Respuesta esperada: `{"status": 200, "message": "Category deleted"}`
 +
 image::images/postman-delete-category.png[]

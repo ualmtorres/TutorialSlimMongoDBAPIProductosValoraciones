@@ -434,6 +434,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/styles/github.min.css">
 </head>
 <body class="book toc2 toc-right">
 <div id="header">
@@ -445,33 +447,39 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Tabla de contenidos</div>
 <ul class="sectlevel1">
 <li><a href="#_resumen">Resumen</a></li>
-<li><a href="#_introducción">Introducción</a></li>
-<li><a href="#_descrición_del_problema">Descrición del problema</a></li>
-<li><a href="#_configuración_del_entorno_de_desarrollo">Configuración del entorno de desarrollo</a>
+<li><a href="#_introducción">1. Introducción</a></li>
+<li><a href="#_descrición_del_problema">2. Descrición del problema</a></li>
+<li><a href="#_configuración_del_entorno_de_desarrollo">3. Configuración del entorno de desarrollo</a>
 <ul class="sectlevel2">
-<li><a href="#_servicios">Servicios</a></li>
-<li><a href="#_instrucciones_de_instalación">Instrucciones de instalación</a></li>
+<li><a href="#_servicios">3.1. Servicios</a></li>
+<li><a href="#_instrucciones_de_instalación">3.2. Instrucciones de instalación</a></li>
 </ul>
 </li>
-<li><a href="#_uso_básico_de_la_extensión_mongodb_para_php">Uso básico de la extensión MongoDB para PHP</a>
+<li><a href="#_uso_básico_de_la_extensión_mongodb_para_php">4. Uso básico de la extensión MongoDB para PHP</a>
 <ul class="sectlevel2">
-<li><a href="#_conexión_a_mongodb">Conexión a MongoDB</a></li>
-<li><a href="#_operaciones_básicas">Operaciones básicas</a></li>
-<li><a href="#_manejo_de_errores">Manejo de errores</a></li>
+<li><a href="#_conexión_a_mongodb">4.1. Conexión a MongoDB</a></li>
+<li><a href="#_operaciones_básicas">4.2. Operaciones básicas</a></li>
+<li><a href="#_manejo_de_errores">4.3. Manejo de errores</a></li>
 </ul>
 </li>
-<li><a href="#_desarrollo_de_la_api">Desarrollo de la API</a>
+<li><a href="#_desarrollo_de_la_api">5. Desarrollo de la API</a>
 <ul class="sectlevel2">
-<li><a href="#_especificación_de_los_endpoints_de_la_api">Especificación de los endpoints de la API</a></li>
-<li><a href="#_crear_la_aplicación_slim">Crear la aplicación Slim</a></li>
-<li><a href="#_endpoint_de_prueba">Endpoint de prueba</a></li>
-<li><a href="#_enpoints_de_categorías">Enpoints de categorías</a></li>
-<li><a href="#_endpoints_de_productos">Endpoints de productos</a></li>
-<li><a href="#_endpoints_de_comentarios">Endpoints de comentarios</a></li>
-<li><a href="#_pruebas_de_la_api">Pruebas de la API</a></li>
+<li><a href="#_especificación_de_los_endpoints_de_la_api">5.1. Especificación de los endpoints de la API</a></li>
+<li><a href="#_crear_la_aplicación_slim">5.2. Crear la aplicación Slim</a></li>
+<li><a href="#_endpoint_de_prueba">5.3. Endpoint de prueba</a></li>
+<li><a href="#_endpoints_de_categorías">5.4. Endpoints de categorías</a></li>
+<li><a href="#_endpoints_de_productos">5.5. Endpoints de productos</a></li>
+<li><a href="#_endpoints_de_comentarios">5.6. Endpoints de comentarios</a></li>
 </ul>
 </li>
-<li><a href="#_conclusiones">Conclusiones</a></li>
+<li><a href="#_indices_para_mejorar_el_rendimiento">6. Indices para mejorar el rendimiento</a>
+<ul class="sectlevel2">
+<li><a href="#_definir_índices_en_mongodb">6.1. Definir índices en MongoDB</a></li>
+<li><a href="#_índices_recomendados_para_la_api">6.2. Índices recomendados para la API</a></li>
+</ul>
+</li>
+<li><a href="#_pruebas_de_la_api">7. Pruebas de la API</a></li>
+<li><a href="#_conclusiones">8. Conclusiones</a></li>
 <li><a href="#_licencia">Licencia</a></li>
 </ul>
 </div>
@@ -513,7 +521,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -526,7 +534,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_introducción">Introducción</h2>
+<h2 id="_introducción">1. Introducción</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En el contexto del comercio electrónico, la experiencia del usuario no solo depende de la disponibilidad de productos, sino también de la calidad de la información y las opiniones de otros compradores. Las valoraciones y comentarios juegan un papel crucial en la toma de decisiones de los clientes, ayudando a generar confianza y a mejorar los productos ofrecidos.</p>
@@ -537,7 +545,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_descrición_del_problema">Descrición del problema</h2>
+<h2 id="_descrición_del_problema">2. Descrición del problema</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En este proyecto se va a desarrollar una API REST utilizando MongoDB para gestionar productos y valoraciones en un entorno de comercio electrónico utilizando Slim Framework, MongoDB y la extensión MongoDB para PHP. La API debe permitir:</p>
@@ -561,7 +569,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuración_del_entorno_de_desarrollo">Configuración del entorno de desarrollo</h2>
+<h2 id="_configuración_del_entorno_de_desarrollo">3. Configuración del entorno de desarrollo</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Para configurar el entorno de desarrollo de la API REST, utilizaremos Docker y Docker Compose. El archivo <code>docker-compose.yml</code> define los servicios necesarios para ejecutar la aplicación, incluyendo MongoDB, PHP con Slim y Nginx.</p>
@@ -571,7 +579,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: "3.8"
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">version: "3.8"
 
 services:
   mongo:
@@ -619,7 +627,7 @@ services:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_servicios">Servicios</h3>
+<h3 id="_servicios">3.1. Servicios</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -644,18 +652,18 @@ services:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-docker" data-lang="docker">FROM php:8.1-fpm
+<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">FROM php:8.1-fpm
 
 RUN apt update \
     &amp;&amp; apt install -y zlib1g-dev g++ git libicu-dev zip libzip-dev zip libpq-dev \
     &amp;&amp; docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     &amp;&amp; docker-php-ext-install intl opcache pdo pdo_pgsql \
     &amp;&amp; pecl install apcu \
-    &amp;&amp; yes '' | pecl install mongodb \ <b class="conum">(1)</b>
+    &amp;&amp; yes '' | pecl install mongodb \ <i class="conum" data-value="1"></i><b>(1)</b>
     &amp;&amp; docker-php-ext-enable apcu \
     &amp;&amp; docker-php-ext-configure zip \
     &amp;&amp; docker-php-ext-install zip \
-    &amp;&amp; docker-php-ext-enable mongodb <b class="conum">(2)</b>
+    &amp;&amp; docker-php-ext-enable mongodb <i class="conum" data-value="2"></i><b>(2)</b>
 
 WORKDIR /var/www/slim_app
 
@@ -663,28 +671,30 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>Instala la extensión <code>mongodb</code> de PECL.</p>
-</li>
-<li>
-<p>Habilita la extensión <code>mongodb</code> en PHP.</p>
-</li>
-</ol>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Instala la extensión <code>mongodb</code> de PECL.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Habilita la extensión <code>mongodb</code> en PHP.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Además, es necesario incluir la dependencia de la extensión <code>mongodb</code> en el archivo <code>composer.json</code> de la aplicación Slim. Desde el contenedor PHP, ejecuta el siguiente comando para instalar la extensión <code>mongodb</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-shell" data-lang="shell">composer require mongodb/mongodb</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">composer require mongodb/mongodb</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_instrucciones_de_instalación">Instrucciones de instalación</h3>
+<h3 id="_instrucciones_de_instalación">3.2. Instrucciones de instalación</h3>
 <div class="paragraph">
 <p>Para instalar y ejecutar la aplicación, sigue estos pasos:</p>
 </div>
@@ -694,7 +704,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 <p>Clona el repositorio:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">git clone https://github.com/ualmtorres/SlimMongoDBAPIProductosValoraciones.git
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/ualmtorres/SlimMongoDBAPIProductosValoraciones.git
 cd SlimMongoDBAPIProductosValoraciones</code></pre>
 </div>
 </div>
@@ -703,7 +713,7 @@ cd SlimMongoDBAPIProductosValoraciones</code></pre>
 <p>Ejecuta Docker Compose para levantar los servicios:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">docker-compose up -d</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">docker-compose up -d</code></pre>
 </div>
 </div>
 </li>
@@ -722,19 +732,19 @@ cd SlimMongoDBAPIProductosValoraciones</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_uso_básico_de_la_extensión_mongodb_para_php">Uso básico de la extensión MongoDB para PHP</h2>
+<h2 id="_uso_básico_de_la_extensión_mongodb_para_php">4. Uso básico de la extensión MongoDB para PHP</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>La extensión MongoDB para PHP proporciona una API orientada a objetos para interactuar con una base de datos de MongoDB. A continuación se muestra cómo conectarse a una base de datos de MongoDB, realizar operaciones básicas como insertar, consultar, actualizar y eliminar documentos, y manejar errores.</p>
 </div>
 <div class="sect2">
-<h3 id="_conexión_a_mongodb">Conexión a MongoDB</h3>
+<h3 id="_conexión_a_mongodb">4.1. Conexión a MongoDB</h3>
 <div class="paragraph">
 <p>Para conectarse a una base de datos de MongoDB, primero necesitamos crear una instancia de la clase <code>MongoDB\Client</code> con la URL de conexión de MongoDB. Aquí hay un ejemplo de cómo conectarse a una base de datos local:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php'; // incluir la librería de MongoDB
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -743,15 +753,15 @@ $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:2701
 </div>
 </div>
 <div class="sect2">
-<h3 id="_operaciones_básicas">Operaciones básicas</h3>
+<h3 id="_operaciones_básicas">4.2. Operaciones básicas</h3>
 <div class="sect3">
-<h4 id="_insertar_documentos">Insertar documentos</h4>
+<h4 id="_insertar_documentos">4.2.1. Insertar documentos</h4>
 <div class="paragraph">
 <p>Para insertar documentos en una colección, utilizamos el método <code>insertOne</code> o <code>insertMany</code>. Aquí hay un ejemplo de cómo insertar un solo documento:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php'; // incluir la librería de MongoDB
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -772,7 +782,7 @@ echo "Inserted with Object ID '{$result-&gt;getInsertedId()}'";
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php';
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -797,13 +807,13 @@ echo "Inserted {$result-&gt;getInsertedCount()} documents";
 </div>
 </div>
 <div class="sect3">
-<h4 id="_consultar_documentos">Consultar documentos</h4>
+<h4 id="_consultar_documentos">4.2.2. Consultar documentos</h4>
 <div class="paragraph">
 <p>Para consultar documentos en una colección, utilizamos el método <code>find</code> o <code>findOne</code>. Aquí hay un ejemplo de cómo consultar todos los documentos en una colección:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php';
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -822,7 +832,7 @@ foreach ($cursor as $document) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php';
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -835,13 +845,13 @@ var_dump($document);
 </div>
 </div>
 <div class="sect3">
-<h4 id="_actualizar_documentos">Actualizar documentos</h4>
+<h4 id="_actualizar_documentos">4.2.3. Actualizar documentos</h4>
 <div class="paragraph">
 <p>Para actualizar documentos en una colección, utilizamos el método <code>updateOne</code> o <code>updateMany</code>. Aquí hay un ejemplo de cómo actualizar un solo documento:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php';
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -862,7 +872,7 @@ echo "Modified {$result-&gt;getModifiedCount()} document(s)";
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php';
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -880,13 +890,13 @@ echo "Modified {$result-&gt;getModifiedCount()} document(s)";
 </div>
 </div>
 <div class="sect3">
-<h4 id="_eliminar_documentos">Eliminar documentos</h4>
+<h4 id="_eliminar_documentos">4.2.4. Eliminar documentos</h4>
 <div class="paragraph">
 <p>Para eliminar documentos en una colección, utilizamos el método <code>deleteOne</code> o <code>deleteMany</code>. Aquí hay un ejemplo de cómo eliminar un solo documento:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php';
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -903,7 +913,7 @@ echo "Deleted {$result-&gt;getDeletedCount()} document(s)";
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 require 'vendor/autoload.php';
 
 $client = new MongoDB\Client('mongodb://&lt;user&gt;:&lt;password&gt;@mongo:27017');
@@ -918,13 +928,13 @@ echo "Deleted {$result-&gt;getDeletedCount()} document(s)";
 </div>
 </div>
 <div class="sect2">
-<h3 id="_manejo_de_errores">Manejo de errores</h3>
+<h3 id="_manejo_de_errores">4.3. Manejo de errores</h3>
 <div class="paragraph">
 <p>Es importante manejar los errores al trabajar con Redis. Puedes utilizar bloques <code>try-catch</code> para capturar excepciones:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 ...
     try {
         new ObjectId($id);
@@ -942,13 +952,13 @@ echo "Deleted {$result-&gt;getDeletedCount()} document(s)";
 </div>
 </div>
 <div class="sect1">
-<h2 id="_desarrollo_de_la_api">Desarrollo de la API</h2>
+<h2 id="_desarrollo_de_la_api">5. Desarrollo de la API</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En esta sección vamos a crear la API REST para gestionar productos, categorías y valoraciones utilizando Slim Framework y MongoDB. Seguiremos un enfoque incremental, comenzando con la configuración general y luego desarrollando cada endpoint paso a paso. Antes, vamos a describir los endpoints disponibles en la API REST.</p>
 </div>
 <div class="sect2">
-<h3 id="_especificación_de_los_endpoints_de_la_api">Especificación de los endpoints de la API</h3>
+<h3 id="_especificación_de_los_endpoints_de_la_api">5.1. Especificación de los endpoints de la API</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1020,10 +1030,10 @@ echo "Deleted {$result-&gt;getDeletedCount()} document(s)";
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_ejemplo_de_json_de_un_producto">Ejemplo de JSON de un producto</h4>
+<h4 id="_ejemplo_de_json_de_un_producto">5.1.1. Ejemplo de JSON de un producto</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
     "name": "Producto 1",
     "description": "Descripción del producto 1",
     "price": 100,
@@ -1033,10 +1043,10 @@ echo "Deleted {$result-&gt;getDeletedCount()} document(s)";
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ejemplo_de_json_de_una_categoría">Ejemplo de JSON de una categoría</h4>
+<h4 id="_ejemplo_de_json_de_una_categoría">5.1.2. Ejemplo de JSON de una categoría</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
     "name": "Categoría 1",
     "description": "Descripción de la categoría 1",
     "parentId": "60c72b2f9b1d8b3a4c8b4567"
@@ -1045,10 +1055,10 @@ echo "Deleted {$result-&gt;getDeletedCount()} document(s)";
 </div>
 </div>
 <div class="sect3">
-<h4 id="_ejemplo_de_json_de_un_comentario">Ejemplo de JSON de un comentario</h4>
+<h4 id="_ejemplo_de_json_de_un_comentario">5.1.3. Ejemplo de JSON de un comentario</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
     "productId": "60c72b2f9b1d8b3a4c8b4567",
     "userId": "60c72b2f9b1d8b3a4c8b4567",
     "username": "usuario123",
@@ -1060,13 +1070,13 @@ echo "Deleted {$result-&gt;getDeletedCount()} document(s)";
 </div>
 </div>
 <div class="sect2">
-<h3 id="_crear_la_aplicación_slim">Crear la aplicación Slim</h3>
+<h3 id="_crear_la_aplicación_slim">5.2. Crear la aplicación Slim</h3>
 <div class="paragraph">
 <p>Crea un archivo <code>public/index.php</code> y añade el siguiente código para configurar la aplicación Slim y conectar a Redis:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -1105,7 +1115,7 @@ function createJsonResponse(ResponseInterface $response, array $data): ResponseI
 
 // Definir las rutas de la aplicación
 $app-&gt;get("/", function (RequestInterface $request, ResponseInterface $response, array $args) {
-    echo file_get_contents('./index.html'); <b class="conum">(1)</b>
+    echo file_get_contents('./index.html'); <i class="conum" data-value="1"></i><b>(1)</b>
 
     return $response;
 });
@@ -1121,22 +1131,18 @@ $app-&gt;run();</code></pre>
 </div>
 </div>
 <div class="colist arabic">
-<ol>
-<li>
-<p>Devuelve el contenido del archivo <code>index.html</code> en la ruta raíz. Este archivo se utiliza para mostrar la documentación de la API REST.</p>
-</li>
-</ol>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/slim-api-redis-api-structure.png" alt="slim api redis api structure">
-</div>
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Devuelve el contenido del archivo <code>index.html</code> en la ruta raíz. Este archivo se utiliza para mostrar la documentación de la API REST.</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Note</div>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
@@ -1146,15 +1152,23 @@ $app-&gt;run();</code></pre>
 </tr>
 </table>
 </div>
+<div class="paragraph">
+<p>La figura siguiente muestra algunos endpoints de la API organizados en categorías, productos y comentarios:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/slim-api-redis-api-structure.png" alt="slim api redis api structure">
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="_endpoint_de_prueba">Endpoint de prueba</h3>
+<h3 id="_endpoint_de_prueba">5.3. Endpoint de prueba</h3>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint de prueba <code>GET /api/test</code> que devuelve un mensaje de prueba:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint de prueba
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint de prueba
 $app-&gt;get($prefix . '/test', function (RequestInterface $request, ResponseInterface $response) {
     $data = [
         'status' =&gt; 200,
@@ -1167,16 +1181,16 @@ $app-&gt;get($prefix . '/test', function (RequestInterface $request, ResponseInt
 </div>
 </div>
 <div class="sect2">
-<h3 id="_enpoints_de_categorías">Enpoints de categorías</h3>
+<h3 id="_endpoints_de_categorías">5.4. Endpoints de categorías</h3>
 <div class="paragraph">
-<p>En esta sección, vamos a implementar los endpoints para gestionar categorías en la API REST. Los endpoints incluyen la creación, consulta, actualización y eliminación de categorías.</p>
+<p>En esta sección vamos a implementar los endpoints para gestionar categorías en la API REST. Los endpoints incluyen la creación, consulta, actualización y eliminación de categorías.</p>
 </div>
 <div class="paragraph">
 <p>En el archivo <code>public/routes/categories.php</code>, añade el siguiente código antes de la definición de las rutas de categorías:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -1186,13 +1200,14 @@ use MongoDB\BSON\ObjectId;
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_crear_una_categoría">Endpoint para crear una categoría</h4>
+<h4 id="_endpoint_para_crear_una_categoría">5.4.1. Endpoint para crear una categoría</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>POST /api/categories</code> que permite crear una nueva categoría. Este endpoint recibe los datos de la categoría en formato JSON en el cuerpo de la solicitud y los inserta en la colección de categorías de MongoDB. En el cuerpo de la solicitud se deben proporcionar los siguientes campos: <code>name</code>, <code>description</code> y <code>parentId</code>. El endpoint devuelve un mensaje con el ID de la nueva categoría creada. La operación MongoDB que se usaría para insertar un documento en la colección de categorías sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.categories.insertOne({" data-lang="db.categories.insertOne({">    name: "Categoría 1",
+<pre class="highlightjs highlight"><code class="language-none hljs">db.categories.insertOne({
+    name: "Categoría 1",
     description: "Descripción de la categoría 1",
     parentId: ObjectId("60c72b2f9b1d8b3a4c8b4567")
 });</code></pre>
@@ -1200,7 +1215,7 @@ use MongoDB\BSON\ObjectId;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para crear una nueva categoría
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para crear una nueva categoría
 $app-&gt;post($prefix . '/categories', function (RequestInterface $request, ResponseInterface $response) use ($categories) {
     $data = $request-&gt;getParsedBody();
 
@@ -1230,33 +1245,18 @@ $app-&gt;post($prefix . '/categories', function (RequestInterface $request, Resp
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_obtener_todas_las_categorías_incluyendo_la_jerarquía">Endpoint para obtener todas las categorías incluyendo la jerarquía</h4>
+<h4 id="_endpoint_para_obtener_todas_las_categorías_incluyendo_la_jerarquía">5.4.2. Endpoint para obtener todas las categorías incluyendo la jerarquía</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>GET /api/categories/tree</code> que permite obtener la jerarquía completa de categorías. Este endpoint consulta todas las categorías de la colección de categorías de MongoDB y construye la jerarquía de categorías en forma de árbol. Para ello, usa una función auxiliar recursiva que recorre las categorías y sus subcategorías. El endpoint devuelve la jerarquía de categorías en formato JSON. La operación MongoDB que se usaría para consultar todas las categorías en la colección de categorías sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.categories.find();" data-lang="db.categories.find();"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.categories.find();</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Este endpoint <code>GET /api/categories/tree</code> se debe colocar antes que el endpoint <code>GET /api/categories</code> para que no haya conflictos en la definición de rutas. Estos conflictos pueden ocurrir si las rutas tienen el mismo prefijo y solo difieren en un parámetro opcional. En ese caso, colocaremos primero la ruta más específica y luego la más general, ya que Slim Framework evalúa las rutas en el orden en que se definen y selecciona la primera coincidencia encontrada.
-Así evitaremos lo que se conoce como "route shadowing", que consiste en que una ruta más específica sea ignorada en favor de una ruta más general porque se definió primero.</p>
-</div>
-</td>
-</tr>
-</table>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Función para construir la jerarquía de categorías
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Función para construir la jerarquía de categorías
 function buildCategoryTree($categories, $parentId = null)
 {
     $branch = [];
@@ -1292,20 +1292,29 @@ $app-&gt;get($prefix . '/categories/tree', function (RequestInterface $request, 
 });</code></pre>
 </div>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Conflictos en la definición de rutas o <em>route shadowing</em></div>
+<div class="paragraph">
+<p>Este endpoint <code>GET /api/categories/tree</code> se debe colocar antes que el endpoint <code>GET /api/categories</code> para que no haya conflictos en la definición de rutas. Estos conflictos pueden ocurrir si las rutas tienen el mismo prefijo y solo difieren en un parámetro opcional. En ese caso, colocaremos primero la ruta más específica y luego la más general, ya que Slim Framework evalúa las rutas en el orden en que se definen y selecciona la primera coincidencia encontrada.
+Así evitaremos lo que se conoce como "route shadowing", que consiste en que una ruta más específica sea ignorada en favor de una ruta más general porque se definió primero.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_obtener_todas_las_categorías">Endpoint para obtener todas las categorías</h4>
+<h4 id="_endpoint_para_obtener_todas_las_categorías">5.4.3. Endpoint para obtener todas las categorías</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>GET /api/categories</code> que permite obtener todas las categorías. Este endpoint consulta todas las categorías de la colección de categorías de MongoDB y las devuelve en formato JSON. La operación MongoDB que se usaría para consultar todas las categorías en la colección de categorías sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.categories.find();" data-lang="db.categories.find();"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.categories.find();</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para obtener todas las categorías
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para obtener todas las categorías
 $app-&gt;get($prefix . '/categories', function (RequestInterface $request, ResponseInterface $response) use ($categories) {
     $result = $categories-&gt;find()-&gt;toArray();
 
@@ -1324,18 +1333,18 @@ $app-&gt;get($prefix . '/categories', function (RequestInterface $request, Respo
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_obtener_una_categoría_por_id">Endpoint para obtener una categoría por ID</h4>
+<h4 id="_endpoint_para_obtener_una_categoría_por_id">5.4.4. Endpoint para obtener una categoría por ID</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>GET /api/categories/{id}</code> que permite obtener una categoría por su ID. Este endpoint recibe el ID de la categoría como parámetro en la URL y busca la categoría correspondiente en la colección de categorías de MongoDB. Si la categoría existe, se devuelve su información en formato JSON. Si la categoría no existe, se devuelve un mensaje de error. La operación MongoDB que se usaría para buscar una categoría en la colección de categorías sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.categories.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });" data-lang="db.categories.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.categories.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para obtener una categoría por ID
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para obtener una categoría por ID
 $app-&gt;get($prefix . '/categories/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($categories) {
     $id = $args['id'];
 
@@ -1371,20 +1380,21 @@ $app-&gt;get($prefix . '/categories/{id}', function (RequestInterface $request, 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_actualizar_una_categoría">Endpoint para actualizar una categoría</h4>
+<h4 id="_endpoint_para_actualizar_una_categoría">5.4.5. Endpoint para actualizar una categoría</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>PUT /api/categories/{id}</code> que permite actualizar una categoría por su ID. Este endpoint recibe el ID de la categoría como parámetro en la URL y los nuevos datos de la categoría en formato JSON en el cuerpo de la solicitud. Los datos de la categoría a actualizar deben incluir los campos <code>name</code>, <code>description</code> y <code>parentId</code>. El endpoint actualiza la categoría correspondiente en la colección de categorías de MongoDB. Si la categoría se actualiza correctamente, se devuelve un mensaje de éxito. Si la categoría no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar una categoría en la colección de categorías sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.categories.updateOne(" data-lang="db.categories.updateOne(">    { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
+<pre class="highlightjs highlight"><code class="language-none hljs">db.categories.updateOne(
+    { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
     { $set: { name: "Nueva categoría", description: "Nueva descripción", parentId: ObjectId("60c72b2f9b1d8b3a4c8b4567") } }
 );</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para actualizar una categoría por ID
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para actualizar una categoría por ID
 $app-&gt;put($prefix . '/categories/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($categories) {
     $id = $args['id'];
     $data = $request-&gt;getParsedBody();
@@ -1433,18 +1443,18 @@ $app-&gt;put($prefix . '/categories/{id}', function (RequestInterface $request, 
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_eliminar_una_categoría">Endpoint para eliminar una categoría</h4>
+<h4 id="_endpoint_para_eliminar_una_categoría">5.4.6. Endpoint para eliminar una categoría</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>DELETE /api/categories/{id}</code> que permite eliminar una categoría por su ID. Este endpoint recibe el ID de la categoría como parámetro en la URL y elimina la categoría correspondiente de la colección de categorías de MongoDB. Si la categoría se elimina correctamente, se devuelve un mensaje de éxito. Si la categoría no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar una categoría en la colección de categorías sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.categories.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });" data-lang="db.categories.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.categories.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para eliminar una categoría por ID
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para eliminar una categoría por ID
 $app-&gt;delete($prefix . '/categories/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($categories) {
     $id = $args['id'];
 
@@ -1478,7 +1488,7 @@ $app-&gt;delete($prefix . '/categories/{id}', function (RequestInterface $reques
 </div>
 </div>
 <div class="sect2">
-<h3 id="_endpoints_de_productos">Endpoints de productos</h3>
+<h3 id="_endpoints_de_productos">5.5. Endpoints de productos</h3>
 <div class="paragraph">
 <p>En esta sección, vamos a implementar los endpoints para gestionar productos en la API REST. Los endpoints incluyen la creación, consulta, actualización y eliminación de productos.</p>
 </div>
@@ -1487,7 +1497,7 @@ $app-&gt;delete($prefix . '/categories/{id}', function (RequestInterface $reques
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -1497,13 +1507,14 @@ use MongoDB\BSON\ObjectId;
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_crear_un_producto">Endpoint para crear un producto</h4>
+<h4 id="_endpoint_para_crear_un_producto">5.5.1. Endpoint para crear un producto</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>POST /api/products</code> que permite crear un nuevo producto. Este endpoint recibe los datos del producto en formato JSON en el cuerpo de la solicitud y los inserta en la colección de productos de MongoDB. En el cuerpo de la solicitudo se deben proporcionar los siguientes campos: <code>name</code>, <code>description</code>, <code>price</code> y <code>categoryId</code>. El endpoint devuelve un mensaje con el ID del nuevo producto creado. La operación MongoDB que se usaría para insertar un documento en la colección de productos sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.products.insertOne({" data-lang="db.products.insertOne({">    name: "Producto 1",
+<pre class="highlightjs highlight"><code class="language-none hljs">db.products.insertOne({
+    name: "Producto 1",
     description: "Descripción del producto 1",
     price: 100,
     categoryId: ObjectId("60c72b2f9b1d8b3a4c8b4567")
@@ -1512,7 +1523,7 @@ use MongoDB\BSON\ObjectId;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para crear un nuevo producto
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para crear un nuevo producto
 $app-&gt;post($prefix . '/products', function (RequestInterface $request, ResponseInterface $response) use ($products) {
     $data = $request-&gt;getParsedBody();
 
@@ -1543,18 +1554,18 @@ $app-&gt;post($prefix . '/products', function (RequestInterface $request, Respon
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_obtener_detalles_de_un_producto">Endpoint para obtener detalles de un producto</h4>
+<h4 id="_endpoint_para_obtener_detalles_de_un_producto">5.5.2. Endpoint para obtener detalles de un producto</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>GET /api/products/{id}</code> que permite obtener los detalles de un producto por su ID. Este endpoint recibe el ID del producto como parámetro en la URL y busca el producto correspondiente en la colección de productos de MongoDB. Si el producto existe, se devuelve su información en formato JSON. Si el producto no existe, se devuelve un mensaje de error. La operación MongoDB que se usaría para buscar un documento en la colección de productos sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.products.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });" data-lang="db.products.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.products.findOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para obtener un producto por ID
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para obtener un producto por ID
 $app-&gt;get($prefix . '/products/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($products) {
     $id = $args['id'];
 
@@ -1590,13 +1601,18 @@ $app-&gt;get($prefix . '/products/{id}', function (RequestInterface $request, Re
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_consultar_productos">Endpoint para consultar productos</h4>
+<h4 id="_endpoint_para_consultar_productos">5.5.3. Endpoint para consultar productos</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>GET /api/products</code> que permite consultar productos. Este endpoint admite parámetros de consulta opcionales para filtrar los productos por categoría (<code>categoryId</code>) o por nombre (<code>name</code>). Si se proporciona el parámetro <code>categoryId</code>, se filtran los productos por la categoría especificada. Si se proporciona el parámetro <code>name</code>, se filtran los productos por el nombre que coincida con la cadena especificada. Se pueden combinar ambos parámetros para realizar búsquedas más específicas. Esta operación devuelve una lista de productos en formato JSON. La operación MongoDB que se usaría para consultar productos en la colección de productos sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para obtener todos los productos o los productos de una categoría o por nombre
+<pre class="highlightjs highlight"><code class="language-none hljs">db.products.find({ categoryId: ObjectId("60c72b2f9b1d8b3a4c8b4567") });</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para obtener todos los productos o los productos de una categoría o por nombre
 $app-&gt;get($prefix . '/products', function (RequestInterface $request, ResponseInterface $response) use ($products) {
     $queryParams = $request-&gt;getQueryParams();
     $filter = [];
@@ -1635,13 +1651,14 @@ $app-&gt;get($prefix . '/products', function (RequestInterface $request, Respons
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_actualizar_un_producto">Endpoint para actualizar un producto</h4>
+<h4 id="_endpoint_para_actualizar_un_producto">5.5.4. Endpoint para actualizar un producto</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>PUT /api/products/{id}</code> que permite actualizar un producto por su ID. Este endpoint recibe el ID del producto como parámetro en la URL y los nuevos datos del producto en formato JSON en el cuerpo de la solicitud. Los datos del producto a actualizar deben incluir los campos <code>name</code>, <code>description</code>, <code>price</code> y <code>categoryId</code>. El endpoint actualiza el producto correspondiente en la colección de productos de MongoDB. Si el producto se actualiza correctamente, se devuelve un mensaje de éxito. Si el producto no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar un documento en la colección de productos sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.products.updateOne(" data-lang="db.products.updateOne(">    { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
+<pre class="highlightjs highlight"><code class="language-none hljs">db.products.updateOne(
+    { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
     { $set: {
         name: "Producto 2",
         description: "Descripción del producto 2",
@@ -1653,7 +1670,7 @@ $app-&gt;get($prefix . '/products', function (RequestInterface $request, Respons
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para actualizar un producto por ID
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para actualizar un producto por ID
 $app-&gt;put($prefix . '/products/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($products) {
     $id = $args['id'];
     $data = $request-&gt;getParsedBody();
@@ -1703,18 +1720,18 @@ $app-&gt;put($prefix . '/products/{id}', function (RequestInterface $request, Re
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_eliminar_un_producto">Endpoint para eliminar un producto</h4>
+<h4 id="_endpoint_para_eliminar_un_producto">5.5.5. Endpoint para eliminar un producto</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>DELETE /api/products/{id}</code> que permite eliminar un producto por su ID. Este endpoint recibe el ID del producto como parámetro en la URL y elimina el producto correspondiente de la colección de productos de MongoDB. También elimina los comentarios asociados al producto. Si el producto se elimina correctamente, se devuelve un mensaje de éxito. Si el producto no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar un documento en la colección de productos sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.products.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });" data-lang="db.products.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.products.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para eliminar un producto por ID
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para eliminar un producto por ID
 $app-&gt;delete($prefix . '/products/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($products, $reviews) {
     $id = $args['id'];
 
@@ -1751,7 +1768,7 @@ $app-&gt;delete($prefix . '/products/{id}', function (RequestInterface $request,
 </div>
 </div>
 <div class="sect2">
-<h3 id="_endpoints_de_comentarios">Endpoints de comentarios</h3>
+<h3 id="_endpoints_de_comentarios">5.6. Endpoints de comentarios</h3>
 <div class="paragraph">
 <p>En esta sección, vamos a implementar los endpoints para gestionar comentarios en la API REST. Los endpoints incluyen la creación, consulta, actualización y eliminación de comentarios.</p>
 </div>
@@ -1760,7 +1777,7 @@ $app-&gt;delete($prefix . '/products/{id}', function (RequestInterface $request,
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">&lt;?php
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">&lt;?php
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -1768,13 +1785,14 @@ use MongoDB\BSON\ObjectId;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_añadir_un_comentario_a_un_producto">Endpoint para añadir un comentario a un producto</h4>
+<h4 id="_endpoint_para_añadir_un_comentario_a_un_producto">5.6.1. Endpoint para añadir un comentario a un producto</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>POST /api/reviews</code> que permite añadir un comentario a un producto. Este endpoint recibe los datos del comentario en formato JSON en el cuerpo de la solicitud y los inserta en la colección de comentarios de MongoDB. En el cuerpo de la solicitud se deben proporcionar los siguientes campos: <code>productId</code>, <code>userId</code>, <code>username</code>, <code>rating</code> y <code>comment</code>. El endpoint devuelve un mensaje con el ID del nuevo comentario creado. La operación MongoDB que se usaría para insertar un documento en la colección de comentarios sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.reviews.insertOne({" data-lang="db.reviews.insertOne({">    productId: ObjectId("60c72b2f9b1d8b3a4c8b4567"),
+<pre class="highlightjs highlight"><code class="language-none hljs">db.reviews.insertOne({
+    productId: ObjectId("60c72b2f9b1d8b3a4c8b4567"),
     userId: ObjectId("60c72b2f9b1d8b3a4c8b4568"),
     username: "usuario123",
     rating: 4.5,
@@ -1785,7 +1803,7 @@ use MongoDB\BSON\ObjectId;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para añadir un comentario a un producto
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para añadir un comentario a un producto
 $app-&gt;post($prefix . '/reviews', function (RequestInterface $request, ResponseInterface $response) use ($reviews) {
     $data = $request-&gt;getParsedBody();
 
@@ -1827,18 +1845,18 @@ $app-&gt;post($prefix . '/reviews', function (RequestInterface $request, Respons
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_obtener_los_comentarios_de_un_producto_o_por_usuario">Endpoint para obtener los comentarios de un producto o por usuario</h4>
+<h4 id="_endpoint_para_obtener_los_comentarios_de_un_producto_o_por_usuario">5.6.2. Endpoint para obtener los comentarios de un producto o por usuario</h4>
 <div class="paragraph">
 <p>Añade el siguiente código para definir un endpoint <code>GET /api/reviews</code> que permite obtener los comentarios de un producto o por usuario. Este endpoint admite parámetros de consulta opcionales para filtrar los comentarios por producto (<code>productId</code>) o por usuario (<code>userId</code>). Si se proporciona el parámetro <code>productId</code>, se filtran los comentarios por el producto especificado. Si se proporciona el parámetro <code>userId</code>, se filtran los comentarios por el usuario especificado. Se pueden combinar ambos parámetros para realizar búsquedas más específicas. Esta operación devuelve una lista de comentarios en formato JSON. La operación MongoDB que se usaría para consultar comentarios en la colección de comentarios sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.reviews.find({ productId: ObjectId("60c72b2f9b1d8b3a4c8b4567") });" data-lang="db.reviews.find({ productId: ObjectId("60c72b2f9b1d8b3a4c8b4567") });"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.reviews.find({ productId: ObjectId("60c72b2f9b1d8b3a4c8b4567") });</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para obtener los comentarios de un producto o por usuario
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para obtener los comentarios de un producto o por usuario
 $app-&gt;get($prefix . '/reviews', function (RequestInterface $request, ResponseInterface $response) use ($reviews) {
     $queryParams = $request-&gt;getQueryParams();
     $filter = [];
@@ -1893,13 +1911,14 @@ $app-&gt;get($prefix . '/reviews', function (RequestInterface $request, Response
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_actualizar_un_comentario">Endpoint para actualizar un comentario</h4>
+<h4 id="_endpoint_para_actualizar_un_comentario">5.6.3. Endpoint para actualizar un comentario</h4>
 <div class="paragraph">
-<p>Añade el siguiente código para definir un endpoint <code>PUT /api/reviews/{id}</code> que permite actualizar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y los nuevos datos del comentario en formato JSON en el cuerpo de la solicitud. Los datos del comentario a actualizar deben incluir los campos <code>userId</code>, <code>rating</code> y <code>comment</code>. El endpoint actualiza el comentario correspondiente en la colección de comentarios de MongoDB. Como medida de seguridad, se verifica que el usuario que intenta actualizar el comentario sea el mismo que lo creó. Si el comentario se actualiza correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar un documento en la colección de comentarios sería similar a la siguiente:</p>
+<p>Añade el siguiente código para definir un endpoint <code>PUT /api/reviews/{id}</code> que permite actualizar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y los nuevos datos del comentario en formato JSON en el cuerpo de la solicitud. Los datos del comentario a actualizar deben incluir los campos <code>userId</code>, <code>rating</code> y <code>comment</code>. El endpoint actualiza el comentario correspondiente en la colección de comentarios de MongoDB. Como medida de seguridad se verifica que el usuario que intenta actualizar el comentario sea el mismo que lo creó. Si el comentario se actualiza correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para actualizar un documento en la colección de comentarios sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.reviews.updateOne(" data-lang="db.reviews.updateOne(">    { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
+<pre class="highlightjs highlight"><code class="language-none hljs">db.reviews.updateOne(
+    { _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") },
     { $set: {
         userId: ObjectId("60c72b2f9b1d8b3a4c8b4568"),
         rating: 4.0,
@@ -1911,8 +1930,7 @@ $app-&gt;get($prefix . '/reviews', function (RequestInterface $request, Response
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para actualizar un comentario
-$app-&gt;put($prefix . '/reviews/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($reviews) {
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">$app-&gt;put($prefix . '/reviews/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($reviews) {
     $id = $args['id'];
     $data = $request-&gt;getParsedBody();
 
@@ -1926,6 +1944,16 @@ $app-&gt;put($prefix . '/reviews/{id}', function (RequestInterface $request, Res
         ]);
     }
 
+    // Validar que el ID del usuario sea un ObjectId
+    try {
+        new ObjectId($data['userId']);
+    } catch (Exception $e) {
+        return createJsonResponse($response-&gt;withStatus(400), [
+            'status' =&gt; 400,
+            'message' =&gt; 'Invalid user ID'
+        ]);
+    }
+
     // Validar los datos de entrada
     if (!isset($data['userId'], $data['rating'], $data['comment'])) {
         return createJsonResponse($response-&gt;withStatus(400), [
@@ -1935,7 +1963,7 @@ $app-&gt;put($prefix . '/reviews/{id}', function (RequestInterface $request, Res
     }
 
     // Verificar que el comentario pertenece al usuario
-    $comment = $reviews-&gt;findOne(['_id' =&gt; new ObjectId($id), 'userId' =&gt; $data['userId']]);
+    $comment = $reviews-&gt;findOne(['_id' =&gt; new ObjectId($id), 'userId' =&gt; new ObjectId($data['userId'])]);
     if (!$comment) {
         return createJsonResponse($response-&gt;withStatus(403), [
             'status' =&gt; 403,
@@ -1969,18 +1997,18 @@ $app-&gt;put($prefix . '/reviews/{id}', function (RequestInterface $request, Res
 </div>
 </div>
 <div class="sect3">
-<h4 id="_endpoint_para_eliminar_un_comentario">Endpoint para eliminar un comentario</h4>
+<h4 id="_endpoint_para_eliminar_un_comentario">5.6.4. Endpoint para eliminar un comentario</h4>
 <div class="paragraph">
-<p>Añade el siguiente código para definir un endpoint <code>DELETE /api/reviews/{id}</code> que permite eliminar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y elimina el comentario correspondiente de la colección de comentarios de MongoDB. Como medida de seguridad, se verifica que el usuario que intenta eliminar el comentario sea el mismo que lo creó. Si el comentario se elimina correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar un documento en la colección de comentarios sería similar a la siguiente:</p>
+<p>Añade el siguiente código para definir un endpoint <code>DELETE /api/reviews/{id}</code> que permite eliminar un comentario por su ID. Este endpoint recibe el ID del comentario como parámetro en la URL y elimina el comentario correspondiente de la colección de comentarios de MongoDB. Como medida de seguridad se verifica que el usuario que intenta eliminar el comentario sea el mismo que lo creó. Si el comentario se elimina correctamente, se devuelve un mensaje de éxito. Si el comentario no se encuentra, se devuelve un mensaje de error. La operación MongoDB que se usaría para eliminar un documento en la colección de comentarios sería similar a la siguiente:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-db.reviews.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });" data-lang="db.reviews.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });"></code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">db.reviews.deleteOne({ _id: ObjectId("60c72b2f9b1d8b3a4c8b4567") });</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-php" data-lang="php">// Endpoint para eliminar un comentario
+<pre class="highlightjs highlight"><code class="language-php hljs" data-lang="php">// Endpoint para eliminar un comentario
 $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, ResponseInterface $response, array $args) use ($reviews) {
     $id = $args['id'];
     $data = $request-&gt;getParsedBody();
@@ -2041,8 +2069,190 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_indices_para_mejorar_el_rendimiento">6. Indices para mejorar el rendimiento</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Los índices son cruciales para mejorar el rendimiento de las consultas en una base de datos. Sin índices, MongoDB debe realizar un escaneo completo de la colección para encontrar los documentos que coinciden con la consulta, lo que puede ser muy ineficiente y lento, especialmente en colecciones grandes. Los índices permiten a MongoDB buscar de manera más eficiente, reduciendo el tiempo de respuesta de las consultas y mejorando el rendimiento general de la aplicación.</p>
+</div>
+<div class="paragraph">
+<p>En el contexto de esta API, los índices pueden ayudar a acelerar las consultas que filtran productos por categoría, buscan productos por nombre, o filtran comentarios por producto o usuario. Al definir índices en los campos más consultados, se puede reducir significativamente el tiempo de respuesta de estos endpoints, proporcionando una mejor experiencia de usuario.</p>
+</div>
+<div class="paragraph">
+<p>En MongoDB se pueden definir varios tipos de índices, cada uno con un propósito específico:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Indice único</strong>: Garantiza que los valores de un campo sean únicos en toda la colección.</p>
+</li>
+<li>
+<p><strong>Indice compuesto</strong>: Un índice en múltiples campos de un documento.</p>
+</li>
+<li>
+<p><strong>Indice de texto</strong>: Permite realizar búsquedas de texto completo en los campos indexados.</p>
+</li>
+<li>
+<p><strong>Indice geoespacial</strong>: Permite realizar consultas geoespaciales en los datos.</p>
+</li>
+<li>
+<p><strong>Indice parcial</strong>: Indexa solo los documentos que cumplen con una condición especificada.</p>
+</li>
+<li>
+<p><strong>Indice TTL (Time To Live)</strong>: Elimina automáticamente los documentos después de un período de tiempo especificado.</p>
+</li>
+</ul>
+</div>
 <div class="sect2">
-<h3 id="_pruebas_de_la_api">Pruebas de la API</h3>
+<h3 id="_definir_índices_en_mongodb">6.1. Definir índices en MongoDB</h3>
+<div class="paragraph">
+<p>Para definir índices en MongoDB, se utiliza el método <code>createIndex</code> en la colección correspondiente. A continuación se muestran algunos ejemplos de cómo definir diferentes tipos de índices:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Indice en un solo campo</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.products.createIndex({ categoryId: 1 })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Indice compuesto</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.products.createIndex({ categoryId: 1, name: 1 })</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>En un índice compuesto, el orden de los campos es importante. En el ejemplo anterior, el índice se crea en los campos <code>categoryId</code> y <code>name</code>, en ese orden. Esto significa que el índice se ordenará primero por <code>categoryId</code> y luego por <code>name</code>. Esto es útil para consultas que filtran por <code>categoryId</code> y ordenan por <code>name</code>. Sin embargo, si las consultas se realizaran en el orden contrario (filtrar por <code>name</code> y ordenar por <code>categoryId</code>), el índice no sería tan eficiente. Por tanto, los índices compuestos deben diseñarse cuidadosamente en función de las consultas que se realizarán.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>Indice de texto</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.products.createIndex({ name: "text" })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Indice único</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.users.createIndex({ email: 1 }, { unique: true })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Indice parcial</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.orders.createIndex({ status: 1 }, { partialFilterExpression: { status: { $eq: "pending" } } })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Indice TTL</strong>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.sessions.createIndex({ createdAt: 1 }, { expireAfterSeconds: 3600 })</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_índices_recomendados_para_la_api">6.2. Índices recomendados para la API</h3>
+<div class="paragraph">
+<p>Definir los índices adecuados en MongoDB es una práctica esencial para optimizar el rendimiento de las consultas y garantizar que la API funcione de manera eficiente, incluso con grandes volúmenes de datos. Para mejorar el rendimiento de los endpoints, es recomendable definir los siguientes índices en MongoDB:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Indices para la colección de productos</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Indice en el campo <code>categoryId</code> para filtrar productos por categoría:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.products.createIndex({ categoryId: 1 })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Indice en el campo <code>name</code> para buscar productos por nombre:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.products.createIndex({ name: "text" })</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Indices para la colección de categorías</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Indice en el campo <code>parentId</code> para construir la jerarquía de categorías:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.categories.createIndex({ parentId: 1 })</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Indices para la colección de comentarios</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Indice en el campo <code>productId</code> para filtrar comentarios por producto:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.reviews.createIndex({ productId: 1 })</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Indice en el campo <code>userId</code> para filtrar comentarios por usuario:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">db.reviews.createIndex({ userId: 1 })</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pruebas_de_la_api">7. Pruebas de la API</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Una vez que hemos desarrollado la API REST con Slim Framework, podemos probar los endpoints utilizando Postman. A continuación se muestran algunos ejemplos de peticiones a la API REST:</p>
 </div>
@@ -2056,13 +2266,13 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>POST</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/categories" class="bare">http://localhost/api/categories</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/categories" class="bare">http://localhost:8080/api/categories</a></code></p>
 </li>
 <li>
 <p>Cuerpo: <code>{"name": "Electrónica", "description": "Categoría de productos electrónicos", "parentId": null}</code></p>
 </li>
 <li>
-<p>Respuesta esperada: <code>{"status": 201, "message": "Category created", "categoryId": "60c72b2f9b1d8b3a4c8b4567"}</code></p>
+<p>Respuesta esperada: <code>{"status": 201, "message": "Category created", "categoryId": "67c200a4953f04997706efbc"}</code></p>
 <div class="imageblock">
 <div class="content">
 <img src="images/postman-create-category.png" alt="postman create category">
@@ -2080,7 +2290,7 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>GET</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/categories" class="bare">http://localhost/api/categories</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/categories" class="bare">http://localhost:8080/api/categories</a></code></p>
 </li>
 <li>
 <p>Respuesta esperada: Lista de categorías en formato JSON</p>
@@ -2101,18 +2311,13 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>POST</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/products" class="bare">http://localhost/api/products</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/products" class="bare">http://localhost:8080/api/products</a></code></p>
 </li>
 <li>
-<p>Cuerpo: <code>{"name": "Smartphone", "description": "Teléfono inteligente", "price": 500, "categoryId": "60c72b2f9b1d8b3a4c8b4567"}</code></p>
+<p>Cuerpo: <code>{"name": "Smartphone", "description": "Teléfono inteligente", "price": 500, "categoryId": "67c200a4953f04997706efbc"}</code></p>
 </li>
 <li>
-<p>Respuesta esperada: <code>{"status": 201, "message": "Product created", "productId": "60c72b2f9b1d8b3a4c8b4568"}</code></p>
-<div class="imageblock">
-<div class="content">
-<img src="images/postman-create-product.png" alt="postman create product">
-</div>
-</div>
+<p>Respuesta esperada: <code>{"status": 201, "message": "Product created", "productId": "67c2015e953f04997706efbd"}</code></p>
 </li>
 </ul>
 </div>
@@ -2125,7 +2330,7 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>GET</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/products?categoryId=60c72b2f9b1d8b3a4c8b4567" class="bare">http://localhost/api/products?categoryId=60c72b2f9b1d8b3a4c8b4567</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/products?categoryId=67c200a4953f04997706efbc" class="bare">http://localhost:8080/api/products?categoryId=67c200a4953f04997706efbc</a></code></p>
 </li>
 <li>
 <p>Respuesta esperada: Lista de productos en formato JSON</p>
@@ -2146,13 +2351,13 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>POST</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/reviews" class="bare">http://localhost/api/reviews</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/reviews" class="bare">http://localhost:8080/api/reviews</a></code></p>
 </li>
 <li>
-<p>Cuerpo: <code>{"productId": "60c72b2f9b1d8b3a4c8b4568", "userId": "60c72b2f9b1d8b3a4c8b4569", "username": "usuario123", "rating": 4.5, "comment": "Muy buen producto, la batería dura bastante."}</code></p>
+<p>Cuerpo: <code>{"productId": "67c2015e953f04997706efbd", "userId": "60c72b2f9b1d8b3a4c8b4569", "username": "usuario123", "rating": 4.5, "comment": "Muy buen producto, la batería dura bastante."}</code></p>
 </li>
 <li>
-<p>Respuesta esperada: <code>{"status": 201, "message": "Comment added", "commentId": "60c72b2f9b1d8b3a4c8b4569"}</code></p>
+<p>Respuesta esperada: <code>{"status": 201, "message": "Comment added", "commentId": "67c2023d953f04997706efbe"}</code></p>
 <div class="imageblock">
 <div class="content">
 <img src="images/postman-add-review.png" alt="postman add review">
@@ -2170,7 +2375,7 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>GET</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/reviews?productId=60c72b2f9b1d8b3a4c8b4568" class="bare">http://localhost/api/reviews?productId=60c72b2f9b1d8b3a4c8b4568</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/reviews?productId=60c72b2f9b1d8b3a4c8b4568" class="bare">http://localhost:8080/api/reviews?productId=60c72b2f9b1d8b3a4c8b4568</a></code></p>
 </li>
 <li>
 <p>Respuesta esperada: Lista de comentarios en formato JSON</p>
@@ -2191,7 +2396,7 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>PUT</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/reviews/60c72b2f9b1d8b3a4c8b4569" class="bare">http://localhost/api/reviews/60c72b2f9b1d8b3a4c8b4569</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/reviews/67c2023d953f04997706efbe" class="bare">http://localhost:8080/api/reviews/67c2023d953f04997706efbe</a></code></p>
 </li>
 <li>
 <p>Cuerpo: <code>{"userId": "60c72b2f9b1d8b3a4c8b4569", "rating": 4.0, "comment": "Muy buen producto, la batería dura bastante."}</code></p>
@@ -2215,7 +2420,7 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>DELETE</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/reviews/60c72b2f9b1d8b3a4c8b4569" class="bare">http://localhost/api/reviews/60c72b2f9b1d8b3a4c8b4569</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/reviews/67c2023d953f04997706efbe" class="bare">http://localhost:8080/api/reviews/67c2023d953f04997706efbe</a></code></p>
 </li>
 <li>
 <p>Cuerpo: <code>{"userId": "60c72b2f9b1d8b3a4c8b4569"}</code></p>
@@ -2239,7 +2444,7 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>DELETE</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/products/60c72b2f9b1d8b3a4c8b4568" class="bare">http://localhost/api/products/60c72b2f9b1d8b3a4c8b4568</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/products/67c2015e953f04997706efbd" class="bare">http://localhost:8080/api/products/67c2015e953f04997706efbd</a></code></p>
 </li>
 <li>
 <p>Respuesta esperada: <code>{"status": 200, "message": "Product and associated reviews deleted"}</code></p>
@@ -2260,7 +2465,7 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 <p>Método: <code>DELETE</code></p>
 </li>
 <li>
-<p>URL: <code><a href="http://localhost/api/categories/60c72b2f9b1d8b3a4c8b4567" class="bare">http://localhost/api/categories/60c72b2f9b1d8b3a4c8b4567</a></code></p>
+<p>URL: <code><a href="http://localhost:8080/api/categories/67c200a4953f04997706efbc" class="bare">http://localhost:8080/api/categories/67c200a4953f04997706efbc</a></code></p>
 </li>
 <li>
 <p>Respuesta esperada: <code>{"status": 200, "message": "Category deleted"}</code></p>
@@ -2277,9 +2482,8 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="_conclusiones">Conclusiones</h2>
+<h2 id="_conclusiones">8. Conclusiones</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>En este tutorial, se ha desarrollado una API REST para la gestión de productos, categorías y comentarios de una tienda en línea utilizando Slim Framework y MongoDB. A lo largo del proceso, hemos configurado un entorno de desarrollo con Docker y Docker Compose, implementado los endpoints necesarios para la API REST y probado la API con Postman.</p>
@@ -2309,8 +2513,15 @@ $app-&gt;delete($prefix . '/reviews/{id}', function (RequestInterface $request, 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-02-28 10:12:22 +0100
+Last updated 2025-02-28 19:56:02 +0100
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
+<script>
+if (!hljs.initHighlighting.called) {
+  hljs.initHighlighting.called = true
+  ;[].slice.call(document.querySelectorAll('pre.highlight > code[data-lang]')).forEach(function (el) { hljs.highlightBlock(el) })
+}
+</script>
 </body>
 </html>
